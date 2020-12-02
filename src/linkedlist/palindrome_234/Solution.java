@@ -1,5 +1,7 @@
 package linkedlist.palindrome_234;
 
+import linkedlist.ListNode;
+
 public class Solution {
 
     public boolean isPalindrome(ListNode head) {

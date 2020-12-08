@@ -25,19 +25,19 @@ public class Solution {
         }
         return result;
     }
-    /*
-    public List<List<Integer>> levelOrderBottom(TreeNode root) {
-	LinkedList<List<Integer>> list = new LinkedList<List<Integer>>();
-	addLevel(list, 0, root);
-	return list;
-}
 
-private void addLevel(LinkedList<List<Integer>> list, int level, TreeNode node) {
-	if (node == null) return;
-	if (list.size()-1 < level) list.addFirst(new LinkedList<Integer>());
-	list.get(list.size()-1-level).add(node.val);
-	addLevel(list, level+1, node.left);
-	addLevel(list, level+1, node.right);
-}
-     */
+    public List<List<Integer>> levelOrderBottomRecursion(TreeNode root){
+        ArrayList<List<Integer>> result = new ArrayList<>();
+        addFromLevel(result, 1, root);
+        return result;
+    }
+
+    private void addFromLevel(ArrayList<List<Integer>> list, int level, TreeNode node){
+        if(node == null) return;
+        if(list.size() - 1 < level) list.add(0, new ArrayList<Integer>());
+        list.get(list.size() - 1 - level).add(node.val);
+        addFromLevel(list, level + 1, node.left);
+        addFromLevel(list, level + 1, node.right);
+    }
+
 }

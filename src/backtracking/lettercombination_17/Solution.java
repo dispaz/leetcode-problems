@@ -7,24 +7,26 @@ public class Solution {
     private String[] phone = new String[] {
             "abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"
     };
+
     public List<String> letterCombinations(String digits) {
-        List<String> result = new ArrayList<>();
-        if(digits.isEmpty()) return result;
-        backtrack(result, new StringBuilder(), digits);
+        List<String> result = new ArrayList();
+        if(!digits.isEmpty())
+            backtrack(result, new StringBuilder(), digits, 0);
         return result;
     }
 
-    private void backtrack(List<String> result, StringBuilder combination, String digits){
-        if(digits.length() == 0){
+    public void backtrack(List<String> result, StringBuilder combination, String digits, int index){
+        if(index >= digits.length()){
             result.add(combination.toString());
             return;
         }
-        int di = digits.charAt(0) - '2';
-        for(int i = 0; i < phone[di].length(); i++){
-            StringBuilder str = new StringBuilder();
-            str.append(combination);
-            str.append(phone[di].charAt(i));
-            backtrack(result, str, digits.substring(1));
+
+        char[] arr = phone[digits.charAt(index) - '2'].toCharArray();
+
+        for(char ch : arr){
+            combination.append(ch);
+            backtrack(result, combination, digits, index + 1);
+            combination.deleteCharAt(combination.length() - 1);
         }
     }
 }

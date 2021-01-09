@@ -10,18 +10,17 @@ import java.util.Queue;
 public class Solution {
     public List<List<Integer>> levelOrderBottom(TreeNode root) {
         LinkedList<List<Integer>> result = new LinkedList<>();
-        Queue<TreeNode> q = new LinkedList<TreeNode>();
-
-        q.add(root);
-
-        while(q.size() != 0){
-            ArrayList<Integer> list = new ArrayList<>();
+        Queue<TreeNode> q = new LinkedList<>();
+        q.offer(root);
+        while(!q.isEmpty()){
+            LinkedList<Integer> list = new LinkedList<>();
             int size = q.size();
             for(int i = 0; i < size; i++){
-                TreeNode n = q.poll();
-                list.add(n.val);
-                if(n.left != null) q.add(n.left);
-                if(n.right != null) q.add(n.right);
+                TreeNode node = q.poll();
+                list.add(node.val);
+                if(node.left != null) q.offer(node.left);
+                if(node.right != null) q.offer(node.right);
+
             }
             result.add(0, list);
         }
@@ -30,7 +29,7 @@ public class Solution {
 
     public List<List<Integer>> levelOrderBottomRecursion(TreeNode root){
         ArrayList<List<Integer>> result = new ArrayList<>();
-        addFromLevel(result, 1, root);
+        addFromLevel(result, 0, root);
         return result;
     }
 

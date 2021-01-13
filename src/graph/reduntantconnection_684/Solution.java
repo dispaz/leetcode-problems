@@ -6,6 +6,15 @@ import java.util.Set;
 
 public class Solution {
     private Set<Integer> set = new HashSet<>();
+    public int[] findRedundantConnectionDSU(int[][] edges) {
+        DSU d = new DSU(edges.length + 1);
+        for(int [] edge : edges){
+            if(!d.union(edge[0], edge[1])){
+                return edge;
+            }
+        }
+        return null;
+    }
 
     public int[] findRedundantConnection(int[][] edges) {
         ArrayList<Integer>[] graph = new ArrayList[1001];
@@ -38,5 +47,33 @@ public class Solution {
             }
         }
         return false;
+    }
+}
+
+class DSU {
+    public int [] parent;
+    public DSU(int n){
+        parent = new int[n];
+        for(int i = 0; i < parent.length; i++){
+            parent[i] = i;
+        }
+    }
+
+    public int find(int x){
+        if(parent[x] != x){
+            parent[x] = find(parent[x]);
+        }
+
+        return parent[x];
+    }
+
+    public boolean union(int x, int y){
+        int xf = find(x), yf = find(y);
+        if(xf == yf)
+        {
+            return false;
+        }
+        parent[xf] = yf;
+        return true;
     }
 }

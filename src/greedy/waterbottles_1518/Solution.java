@@ -9,4 +9,7 @@ public class Solution {
         }
         return sum;
     }
+    public int numWaterBottles2(int numBottles, int numExchange) {
+        return numBottles + (numBottles - 1) / (numExchange - 1);
+    }
 }

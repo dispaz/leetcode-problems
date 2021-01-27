@@ -4,7 +4,7 @@ public class Solution {
     public boolean rotateString(String A, String B) {
         return A.length() == B.length() && (A+A).contains(B);
     }
-    
+
     public boolean rotateString2(String A, String B) {
         if(A.equals(B)) return true;
         if(A.length() != B.length()) return false;

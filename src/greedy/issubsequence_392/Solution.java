@@ -15,4 +15,13 @@ public class Solution {
 
         return false;
     }
+
+    public boolean isSubsequence2(String s, String t){
+        int p = -1;
+        for(int i = 0; i < s.length(); i ++){
+            p = t.indexOf(s.charAt(i), p + 1);
+            if(p == -1) return false;
+        }
+        return true;
+    }
 }

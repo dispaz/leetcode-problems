@@ -2,7 +2,69 @@ package tree.bfsmode_501;
 
 import tree.TreeNode;
 
-public class Solution {
+class Solution {
+    int curr;
+    int [] res;
+    int freq = 0;
+    int max = 0;
+    int modeCount = 0;
+
+    public int[] findMode(TreeNode root) {
+        inorderModeCount(root);
+        res = new int[modeCount];
+        freq = 0;
+        curr = 0;
+        inorderMode(root);
+        return res;
+    }
+
+    void inorderModeCount(TreeNode root){
+        if(root == null){
+            return;
+        }
+
+        inorderModeCount(root.left);
+
+        if(curr != root.val){
+            curr = root.val;
+            freq = 0;
+        }
+
+        freq++;
+
+        if(max < freq){
+            max = freq;
+            modeCount = 1;
+        } else if(max == freq){
+            modeCount++;
+        }
+
+        inorderModeCount(root.right);
+    }
+
+    void inorderMode(TreeNode root){
+        if(root == null || modeCount == 0){
+            return;
+        }
+
+        inorderMode(root.left);
+
+        if(curr != root.val){
+            curr = root.val;
+            freq = 0;
+        }
+
+        freq++;
+
+        if(freq == max){
+            res[--modeCount] = curr;
+        }
+
+        inorderMode(root.right);
+    }
+}
+
+class Solution2 {
     int currentVal;
     int [] res;
     int count = 0;

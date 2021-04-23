@@ -51,6 +51,28 @@ public class HashMap {
         }
     }
 
+    public void remove(int key){
+        int hash = (key % table.length);
+        HashEntry tmp = table[hash];
+        if(tmp == null){
+            return;
+        }
+        HashEntry prev = null;
+        while(tmp.next != null && tmp.getKey() != key){
+            prev = tmp;
+            tmp = tmp.next;
+        }
+
+        if(tmp.getKey() == key){
+            if(prev == null)
+                table[hash] = null;
+            else
+                prev.next = tmp.next;
+
+            size = size > 0 ? size - 1 : size;
+        }
+    }
+
     public int size(){
         return size;
     }
@@ -60,8 +82,15 @@ public class HashMap {
         maxSize = tableSize;
         HashEntry[] old = table;
         table = new HashEntry[tableSize];
+        size = 0;
         for(int i = 0; i < old.length; i++){
-            table[i] = old[i];
+            if(old[i] != null){
+                HashEntry tmp = old[i];
+                while(tmp != null){
+                    put(tmp.getKey(), tmp.getValue());
+                    tmp = tmp.next;
+                }
+            }
         }
     }
 

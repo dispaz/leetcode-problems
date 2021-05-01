@@ -84,12 +84,10 @@ public class HashMap {
         table = new HashEntry[tableSize];
         size = 0;
         for(int i = 0; i < old.length; i++){
-            if(old[i] != null){
-                HashEntry tmp = old[i];
-                while(tmp != null){
-                    put(tmp.getKey(), tmp.getValue());
-                    tmp = tmp.next;
-                }
+            HashEntry tmp = old[i];
+            while(tmp != null){
+                put(tmp.getKey(), tmp.getValue());
+                tmp = tmp.next;
             }
         }
     }

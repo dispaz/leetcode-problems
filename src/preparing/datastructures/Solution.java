@@ -1,19 +1,23 @@
 package preparing.datastructures;
 
+import preparing.datastructures.Tree.Tree;
 import preparing.datastructures.hashtable.HashMap;
 
 public class Solution {
     public static void main(String [] args){
-        HashMap map = new HashMap();
-        map.put(1, 10);
-        map.put(2, 15);
-        map.put(3, 16);
-        map.put(4, 4);
-
-        map.remove(4);
-        map.remove(3);
-
-        map.put(11, 90);
-        System.out.println(map.get(11) + " size = " + map.size());
+        Tree tree = new Tree();
+        tree.add(4);
+        tree.add(2);
+        tree.add(3);
+        tree.add(1);
+        tree.add(6);
+        tree.add(5);
+        tree.showTree();
+        tree.remove(2);
+        tree.showTree();
+        tree.remove(4);
+        tree.showTree();
+        System.out.println("size = " + tree.size());
+        System.out.println(tree.min().val);
     }
 }

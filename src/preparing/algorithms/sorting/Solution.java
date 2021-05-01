@@ -1,12 +1,13 @@
 package preparing.algorithms.sorting;
 
+import static preparing.algorithms.sorting.heap.HeapSort.heapSort;
 import static preparing.algorithms.sorting.merge.MergeSort.mergeSort;
 
 public class Solution {
     public static void main(String [] args){
         int [] a = new int[] {4, 9, 6, 1, 10, 5, 2, 7, 8, 3, 11, 16, 13, 12, 14, 19, 15, 20, 17, 18};
         printArr(a);
-        mergeSort(a);
+        heapSort(a);
         printArr(a);
     }
 

@@ -1,6 +1,9 @@
 package preparing.datastructures;
 
 import preparing.datastructures.Tree.Tree;
+import preparing.datastructures.graph.BreadthFirstSearch;
+import preparing.datastructures.graph.DepthFirstSearch;
+import preparing.datastructures.graph.Graph;
 import preparing.datastructures.hashtable.HashMap;
 
 import java.util.ArrayList;
@@ -12,21 +15,26 @@ public class Solution {
     public static final int TREE_SIZE = 25;
 
     public static void main(String [] args){
-        Tree tree = new Tree(true);
-        List<Integer> arr = new ArrayList();
-        for(int i = 0; i < TREE_SIZE; i++){
-            arr.add(i + 1);
-        }
-        Random rand = new Random();
-        for(int i = 0; i < TREE_SIZE; i++){
-            int id = rand.nextInt(arr.size());
-            System.out.print("\n\n\n\n" + "adding " + arr.get(id) + "\n\n\n\n");
-            tree.add(arr.get(id));
-            arr.remove(id);
-            tree.showTree();
-        }
-        System.out.println("size = " + tree.size());
 
-        System.out.println(tree.min().val);
+        Graph graph = new Graph(10);
+        graph.addEdge(0,1);
+        graph.addEdge(0,4);
+        graph.addEdge(1,5);
+        graph.addEdge(2,3);
+        graph.addEdge(4,3);
+        graph.addEdge(5,8);
+        graph.addEdge(6,8);
+        graph.addEdge(0,7);
+        graph.addEdge(3,7);
+        graph.addEdge(2,9);
+        graph.addEdge(6,7);
+
+        DepthFirstSearch dfs = new DepthFirstSearch(graph, 0);
+        System.out.println();
+        BreadthFirstSearch bfs = new BreadthFirstSearch(graph, 0);
+        System.out.println();
+        for(int x : dfs.pathTo(9)){
+            System.out.print(x + " ");
+        }
     }
 }

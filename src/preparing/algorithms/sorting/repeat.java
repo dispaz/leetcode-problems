@@ -1,6 +1,9 @@
 package preparing.algorithms.sorting;
 
+import java.util.Random;
+
 public class repeat {
+    static Random rand = new Random();
     private static void reccursionQuickSort(int [] a, int start, int end){
         if(start < end){
             int pi = partition_r(a, start, end);
